@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: staging
+    database: taxi-rides-ny-v2  # 替换为你的新项目 ID
+    schema: trips_data_all      # 你之前存放外部表的数据集
+    tables:
+      - name: external_yellow_tripdata

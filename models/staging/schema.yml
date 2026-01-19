@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: stg_yellow_tripdata
+    # 👇 1. 这里给整个表加描述
+    description: "纽约黄色出租车行程数据，已清洗并关联了供应商名称。"
+    columns:
+      - name: pickup_datetime
+        tests:
+          - not_null
+      - name: passenger_count
+        description: "乘客数量"
+        tests:
+          - accepted_values:
+              values: ['1', '2', '3', '4', '5', '6', '7', '8']
+      - name: fare_amount
+        tests:
+          - not_null
+      # 注意：原生的 dbt 检查“大于0”通常用自定义测试或 dbt_utils
+      # 这里我们先给另一个关键字段加一个“接受值”测试作为练习
+      - name: vendorid
+        description: "供应商ID (1=Creative Mobile, 2=VeriFone)" # 👈 2. 给字段加描述
+        tests:
+          - accepted_values:
+              values: ['1', '2']  
